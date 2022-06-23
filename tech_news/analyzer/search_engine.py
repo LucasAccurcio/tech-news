@@ -14,9 +14,70 @@ def search_by_title(title):
     return response
 
 
+# função para verificar se a data está no formato correto
+# e retornar a data por extenso
+def check_date(date):
+    list_date = date.split("-")
+
+    if len(list_date) == 3:
+        if (
+            list_date[0].isdigit()
+            and list_date[1].isdigit()
+            and list_date[2].isdigit()
+            and len(list_date[0]) == 4
+            and len(list_date[1]) == 2
+            and len(list_date[2]) == 2
+        ):
+            if (
+                int(list_date[2]) <= 31
+                and 0 < int(list_date[1]) <= 12
+                and 1900 < int(list_date[0]) <= 2999
+            ):
+                meses = [
+                    "janeiro",
+                    "fevereiro",
+                    "março",
+                    "abril",
+                    "maio",
+                    "junho",
+                    "julho",
+                    "agosto",
+                    "setembro",
+                    "outubro",
+                    "novembro",
+                    "dezembro",
+                ]
+
+                return (
+                    f"{list_date[2]}"
+                    + f" de {meses[int(list_date[1]) - 1]}"
+                    + f" de {list_date[0]}"
+                )
+            else:
+                raise ValueError
+        else:
+            raise ValueError
+    else:
+        raise ValueError
+
+
 # Requisito 7
 def search_by_date(date):
-    """Seu código deve vir aqui"""
+    written_date = check_date(date)
+
+    search_data = search_news(
+        {"timestamp": {"$regex": f"{written_date}", "$options": "i"}}
+    )
+    response = []
+    for data in search_data:
+        response.append(
+            (data["title"], data["url"]),
+        )
+
+    return response
+
+
+search_by_date("2022-06-20")
 
 
 # Requisito 8
