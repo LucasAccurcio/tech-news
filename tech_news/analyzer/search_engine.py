@@ -92,7 +92,18 @@ search_by_date("20521-04-04")
 
 # Requisito 8
 def search_by_tag(tag):
-    """Seu código deve vir aqui"""
+    search_data = search_news(
+        {"tags": {"$elemMatch": {"$regex": f"{tag}", "$options": "i"}}}
+    )
+    response = []
+    for data in search_data:
+        response.append(
+            (data["title"], data["url"]),
+        )
+    return response
+
+
+search_by_tag("Tecnologia")
 
 
 # Requisito 9
