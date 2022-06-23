@@ -2,7 +2,7 @@ import requests
 import time
 import parsel
 import re
-from .database import create_news
+from tech_news.database import create_news
 
 
 # Requisito 1
@@ -83,3 +83,6 @@ def get_tech_news(amount):
         URL_BASE = scrape_next_page_link(get_page_content)
     create_news(data)
     return data
+
+
+get_tech_news(5)
