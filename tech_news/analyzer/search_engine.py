@@ -54,11 +54,11 @@ def check_date(date):
                     + f" de {list_date[0]}"
                 )
             else:
-                raise ValueError
+                raise ValueError("Data inválida")
         else:
-            raise ValueError
+            raise ValueError("Data inválida")
     else:
-        raise ValueError
+        raise ValueError("Data inválida")
 
 
 # Requisito 7
@@ -73,11 +73,11 @@ def search_by_date(date):
         response.append(
             (data["title"], data["url"]),
         )
-
+    print(response)
     return response
 
 
-search_by_date("2022-06-20")
+search_by_date("202-06-20")
 
 
 # Requisito 8
