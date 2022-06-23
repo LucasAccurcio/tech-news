@@ -14,6 +14,15 @@ def search_by_title(title):
     return response
 
 
+# função para remover o 0 do dia < 10
+def fix_day(day):
+    if int(day) > 9:
+        return day
+    else:
+        if(len(day) == 2):
+            return day[1]
+
+
 # função para verificar se a data está no formato correto
 # e retornar a data por extenso
 def check_date(date):
@@ -47,37 +56,38 @@ def check_date(date):
                     "novembro",
                     "dezembro",
                 ]
-
+                list_date[2] = fix_day(list_date[2])
                 return (
                     f"{list_date[2]}"
                     + f" de {meses[int(list_date[1]) - 1]}"
                     + f" de {list_date[0]}"
                 )
             else:
-                raise ValueError("Data inválida")
+                raise ValueError
         else:
-            raise ValueError("Data inválida")
+            raise ValueError
     else:
-        raise ValueError("Data inválida")
+        raise ValueError
 
 
 # Requisito 7
 def search_by_date(date):
-    written_date = check_date(date)
-
-    search_data = search_news(
-        {"timestamp": {"$regex": f"{written_date}", "$options": "i"}}
-    )
-    response = []
-    for data in search_data:
-        response.append(
-            (data["title"], data["url"]),
+    try:
+        written_date = check_date(date)
+        search_data = search_news(
+            {"timestamp": {"$regex": f"{written_date}", "$options": "i"}}
         )
-    print(response)
-    return response
+        response = []
+        for data in search_data:
+            response.append(
+                (data["title"], data["url"]),
+            )
+        return response
+    except ValueError:
+        print("Data inválida")
 
 
-search_by_date("202-06-20")
+search_by_date("20521-04-04")
 
 
 # Requisito 8
