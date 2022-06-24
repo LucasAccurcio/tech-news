@@ -1,3 +1,17 @@
+import sys
+from tech_news.scraper import get_tech_news
+from tech_news.analyzer.search_engine import (
+    search_by_title,
+    search_by_date,
+    search_by_tag,
+    search_by_category,
+)
+from tech_news.analyzer.ratings import (
+    top_5_news,
+    top_5_categories,
+)
+
+
 def print_menu():
     texto = (
         "Selecione uma das opções a seguir:\n"
@@ -20,23 +34,74 @@ def print_menu():
 # Requisito 12
 def analyzer_menu():
     exit = False
-    while (exit is False):
+    while exit is False:
         option = print_menu()
+
         if option == 0:
-            print("Digite quantas notícias serão buscadas:")
+            try:
+                quantidade = int(
+                    input("Digite quantas notícias serão buscadas:")
+                )
+                noticias = get_tech_news(quantidade)
+                print(noticias)
+                exit = True
+            except ValueError:
+                print("Valor incorreto")
+                exit = True
+
         elif option == 1:
-            print("Digite o título:")
+            try:
+                titulo = input("Digite o título:")
+                noticias = search_by_title(titulo)
+                print(noticias)
+                exit = True
+            except ValueError:
+                print("Valor incorreto")
+                exit = True
+
         elif option == 2:
-            print("Digite a data no formato aaaa-mm-dd:")
+            data = input("Digite a data no formato aaaa-mm-dd:")
+            noticias = search_by_date(data)
+            print(noticias)
+            exit = True
+
         elif option == 3:
-            print("Digite a tag:")
+            try:
+                tag = input("Digite a tag:")
+                noticias = search_by_tag(tag)
+                print(noticias)
+                exit = True
+            except ValueError:
+                print("Valor incorreto")
+                exit = True
+
         elif option == 4:
-            print("Digite a categoria:")
+            try:
+                categoria = input("Digite a categoria:")
+                noticias = search_by_category(categoria)
+                print(noticias)
+                exit = True
+            except ValueError:
+                print("Valor incorreto")
+                exit = True
+
         elif option == 5:
-            print("Listar top 5 notícias:")
+            noticias = top_5_news()
+            print(noticias)
+            exit = True
+
         elif option == 6:
-            print("Listar top 5 categorias:")
+            noticias = top_5_categories()
+            print(noticias)
+            exit = True
+
         elif option == 7:
+            print("Encerrando script\n")
             exit = True
+
         else:
+            sys.stderr.write("Opção inválida\n")
             exit = True
+
+
+# analyzer_menu()
