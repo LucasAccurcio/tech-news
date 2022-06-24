@@ -1,5 +1,6 @@
+from typing import Counter
 import pymongo
-from tech_news.database import get_collection
+from tech_news.database import get_collection, find_news
 
 
 # Requisito 10
@@ -27,26 +28,19 @@ def top_5_news():
 
 # Requisito 11
 def top_5_categories():
-    collection = get_collection()
-    data_list = collection.aggregate(
-        [
-            {
-                "$group": {
-                    "_id": "$category",
-                    "total": {"$sum": 1}
-                },
-            },
-            {
-                "$sort": {"total": -1},
-            },
-            {
-                "$limit": 5
-            },
-        ]
-    )
+    data = find_news()
+    lista = []
+    for d in data:
+        lista.append(d["category"])
 
+    categories = Counter(lista).most_common()
     response = []
-    for data in data_list:
-        response.append(data["_id"])
 
+    counter = 0
+    for category in categories:
+        if counter == 5:
+            break
+        response.append(category[0])
+        counter += 1
+    print(response)
     return response
