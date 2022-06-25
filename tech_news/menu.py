@@ -12,8 +12,73 @@ from tech_news.analyzer.ratings import (
 )
 
 
-def print_menu():
-    texto = (
+def get_news_by_quantity():
+    try:
+        quantidade = int(input("Digite quantas notícias serão buscadas:"))
+        noticias = get_tech_news(quantidade)
+        print(noticias)
+    except ValueError:
+        print("Valor incorreto")
+    return True
+
+
+def get_news_by_tittle():
+    try:
+        titulo = input("Digite o título:")
+        noticias = search_by_title(titulo)
+        print(noticias)
+    except ValueError:
+        print("Valor incorreto")
+    return True
+
+
+def get_news_by_data():
+    data = input("Digite a data no formato aaaa-mm-dd:")
+    noticias = search_by_date(data)
+    print(noticias)
+    return True
+
+
+def get_news_by_tag():
+    try:
+        tag = input("Digite a tag:")
+        noticias = search_by_tag(tag)
+        print(noticias)
+    except ValueError:
+        print("Valor incorreto")
+    return True
+
+
+def get_news_by_category():
+    try:
+        categoria = input("Digite a categoria:")
+        noticias = search_by_category(categoria)
+        print(noticias)
+    except ValueError:
+        print("Valor incorreto")
+    return True
+
+
+def get_top_five_news():
+    noticias = top_5_news()
+    print(noticias)
+    return True
+
+
+def get_top_five_categories():
+    noticias = top_5_categories()
+    print(noticias)
+    return True
+
+
+def exit():
+    print("Encerrando script\n")
+    return True
+
+
+# Requisito 12
+def analyzer_menu():
+    texto_menu = (
         "Selecione uma das opções a seguir:\n"
         " 0 - Popular o banco com notícias;\n"
         " 1 - Buscar notícias por título;\n"
@@ -24,84 +89,25 @@ def print_menu():
         " 6 - Listar top 5 categorias;\n"
         " 7 - Sair."
     )
-    try:
-        option = int(input(texto))
-        return option
-    except ValueError:
-        print("Opção inválida!\n\n")
-
-
-# Requisito 12
-def analyzer_menu():
-    exit = False
-    while exit is False:
-        option = print_menu()
-
-        if option == 0:
-            try:
-                quantidade = int(
-                    input("Digite quantas notícias serão buscadas:")
-                )
-                noticias = get_tech_news(quantidade)
-                print(noticias)
-                exit = True
-            except ValueError:
-                print("Valor incorreto")
-                exit = True
-
-        elif option == 1:
-            try:
-                titulo = input("Digite o título:")
-                noticias = search_by_title(titulo)
-                print(noticias)
-                exit = True
-            except ValueError:
-                print("Valor incorreto")
-                exit = True
-
-        elif option == 2:
-            data = input("Digite a data no formato aaaa-mm-dd:")
-            noticias = search_by_date(data)
-            print(noticias)
-            exit = True
-
-        elif option == 3:
-            try:
-                tag = input("Digite a tag:")
-                noticias = search_by_tag(tag)
-                print(noticias)
-                exit = True
-            except ValueError:
-                print("Valor incorreto")
-                exit = True
-
-        elif option == 4:
-            try:
-                categoria = input("Digite a categoria:")
-                noticias = search_by_category(categoria)
-                print(noticias)
-                exit = True
-            except ValueError:
-                print("Valor incorreto")
-                exit = True
-
-        elif option == 5:
-            noticias = top_5_news()
-            print(noticias)
-            exit = True
-
-        elif option == 6:
-            noticias = top_5_categories()
-            print(noticias)
-            exit = True
-
-        elif option == 7:
-            print("Encerrando script\n")
-            exit = True
-
-        else:
-            sys.stderr.write("Opção inválida\n")
-            exit = True
-
-
-# analyzer_menu()
+    stop = False
+    while (stop is False):
+        try:
+            option = int(input(texto_menu))
+            if option > 7:
+                sys.stderr.write("Opção inválida\n")
+                stop = False
+            else:
+                dict_functions = {
+                    0: get_news_by_quantity,
+                    1: get_news_by_tittle,
+                    2: get_news_by_data,
+                    3: get_news_by_tag,
+                    4: get_news_by_category,
+                    5: get_top_five_news,
+                    6: get_top_five_categories,
+                    7: exit,
+                }
+                stop = dict_functions.get(option)()
+        except ValueError:
+            print("Opção inválida!\n")
+            stop = True

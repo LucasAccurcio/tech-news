@@ -42,5 +42,4 @@ def top_5_categories():
             break
         response.append(category[0])
         counter += 1
-    print(response)
     return response
