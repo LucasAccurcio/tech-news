@@ -142,3 +142,12 @@ dmypy.json
 .prof
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+
+
+# my repository
+.vscode
+.trybe
+.github
+tests/
+teste_manual.gif
+trybe.yml

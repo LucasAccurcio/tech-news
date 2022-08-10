@@ -19,7 +19,7 @@ def get_news_by_quantity():
         print(noticias)
     except ValueError:
         print("Valor incorreto")
-    return True
+    return False
 
 
 def get_news_by_tittle():
@@ -29,14 +29,14 @@ def get_news_by_tittle():
         print(noticias)
     except ValueError:
         print("Valor incorreto")
-    return True
+    return False
 
 
 def get_news_by_data():
     data = input("Digite a data no formato aaaa-mm-dd:")
     noticias = search_by_date(data)
     print(noticias)
-    return True
+    return False
 
 
 def get_news_by_tag():
@@ -46,7 +46,7 @@ def get_news_by_tag():
         print(noticias)
     except ValueError:
         print("Valor incorreto")
-    return True
+    return False
 
 
 def get_news_by_category():
@@ -56,19 +56,19 @@ def get_news_by_category():
         print(noticias)
     except ValueError:
         print("Valor incorreto")
-    return True
+    return False
 
 
 def get_top_five_news():
     noticias = top_5_news()
     print(noticias)
-    return True
+    return False
 
 
 def get_top_five_categories():
     noticias = top_5_categories()
     print(noticias)
-    return True
+    return False
 
 
 def exit():
@@ -111,3 +111,6 @@ def analyzer_menu():
         except ValueError:
             print("Opção inválida!\n")
             stop = True
+
+
+analyzer_menu()
