@@ -45,20 +45,28 @@ As notícias serão armazenadas em uma coleção chamada `news`.
   
 ### Executando a aplicação com banco de dados local:
 
-4. Com o mongoDB rodando em sua máquina local, execute o seguinte comando na pasta raiz:
+  Com o mongoDB rodando em sua máquina local, execute o seguinte comando na pasta raiz:
 
   `tech-news-analyzer`
 
-    O comando inicializará a função de Web Scraping já povoando o banco de dados com 5 notícias, pode demorar um pouco.
+  O comando inicializará a função de Web Scraping já povoando o banco de dados com 5 notícias, pode demorar um pouco.
 
-    Em seguida será exibido um menu no terminal solicitando ao usuário qual operação deseja ser realizada.
+  Em seguida será exibido um menu no terminal solicitando ao usuário qual operação deseja ser realizada.
 
 
 ### Executando a aplicação com banco de dados via Docker:
 
-  * Com o Docker e Docker Compose já instalados, execute o seguinte comando no terminal:
+  Com o Docker e Docker Compose já instalados, execute o seguinte comando no terminal:
 
   `docker-compose up -d mongodb`
+
+  Em seguida execute o seguinte comando na pasta raiz:
+  
+  `tech-news-analyzer`
+
+  O comando inicializará a função de Web Scraping já povoando o banco de dados com 5 notícias, pode demorar um pouco.
+
+  Em seguida será exibido um menu no terminal solicitando ao usuário qual operação deseja ser realizada.
 
 
 ### Menu da aplicação :computer:
