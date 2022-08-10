@@ -33,7 +33,7 @@ As notícias serão armazenadas em uma coleção chamada `news`.
 1. Clone o repositório:
   * `git clone git@github.com:LucasAccurcio/tech-news.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd tech-news
+    - cd `tech-news`
     
 2. Crie o ambiente virtual para o projeto
 
@@ -43,19 +43,25 @@ As notícias serão armazenadas em uma coleção chamada `news`.
 
   - `python3 -m pip install -r dev-requirements.txt`
   
+### Executando a aplicação com banco de dados local:
+
 4. Com o mongoDB rodando em sua máquina local, execute o seguinte comando na pasta raiz:
 
   `tech-news-analyzer`
 
-  O comando inicializará a função de Web Scraping já povoando o banco de dados com 5 notícias, pode demorar um pouco.
+    O comando inicializará a função de Web Scraping já povoando o banco de dados com 5 notícias, pode demorar um pouco.
 
-  Em seguida será exibido um menu no terminal solicitando ao usuário qual operação deseja ser realizada.
+    Em seguida será exibido um menu no terminal solicitando ao usuário qual operação deseja ser realizada.
 
-  * Rodar MongoDB via Docker:
+
+### Executando a aplicação com banco de dados via Docker:
+
+  * Com o Docker e Docker Compose já instalados, execute o seguinte comando no terminal:
 
   `docker-compose up -d mongodb`
 
-  ### Menu da aplicação :computer:
+
+### Menu da aplicação :computer:
 
   ```sh
   Selecione uma das opções a seguir:
